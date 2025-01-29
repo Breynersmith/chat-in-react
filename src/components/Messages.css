@@ -1,0 +1,9 @@
+#messages {
+    height: 62vh;
+    width: 96%;
+    background-color: white;
+    border-radius: 10px;
+    border: 2px solid #228800;
+    margin-top: -20px;
+    padding: 10px;
+}
