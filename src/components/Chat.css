@@ -1,22 +1,102 @@
 .chat {
-    background-color: white;
-    height: 100%;
+    background-color: #228800;
+    height: 90vh;
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    padding: 20px 5px;
+    border-radius: 15px;
 }
-.chat input {
+
+.messages {
+    margin: 10px;
+    padding: 10px;
+    height: 70%;
+    background-color: white;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    overflow-y: auto;
+}
+
+.writer {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.writer > input {
     background-color: white;
     border: none;
     border-radius: 5px;
-    width: 70vw;
+    width: 100%;
     padding: 10px;
+    height: 40px;
+    font-size: 1rem;
 }
-.chat > button {
+
+.writer > button {
     border-radius: 5px;
-    padding: 10px;
+    padding: 10px 20px;
     border: none;
     color: #228800;
     font-weight: bold;
-    
+    height: 40px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+
+@media (min-width: 768px) {
+    .chat {
+        width: 60%;
+        margin: 0 auto;
+        height: 70vh;
+    }
+
+    .writer > input {
+        width: 80%;
+        font-size: 1.1rem;
+    }
+
+    .writer > button {
+        height: 45px;
+        font-size: 1.1rem;
+    }
+}
+
+
+@media (min-width: 1024px) {
+    .chat {
+        width: 50%;
+        height: 100%;
+    }
+
+    .writer > input {
+        width: 70%;
+    }
+
+    .writer > button {
+        height: 50px;
+        font-size: 1.2rem;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .chat {
+        width: 100%;
+        height: 90vh;
+        padding: 10px;
+    }
+
+    .writer > input {
+        width: 90%;
+    }
+
+    .writer > button {
+        width: 30%;
+        height: 60px;
+    }
 }

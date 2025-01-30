@@ -1,49 +1,73 @@
-import { useState, useEffect, useContext } from 'react';
-import { ChatContext } from '../store/chatContext';
-import { UserContext } from '../store/userContext';
-import './Chat.css';
+import React, { useState, useEffect, useContext } from "react";
+import { ref, onValue, push } from "firebase/database";
+import { database } from "../../firebase";
+import { UserContext } from "../store/userContext";
+import Header from "./Header";
+import "./Chat.css";
 
 const Chat = () => {
-  const [newMessage, setNewMessage] = useState('');
-  const { messages, setMessages } = useContext(ChatContext);
-  const { username } = useContext(UserContext);
-  
-   const [blur, setBlur] = useState(false)
-  
-  useEffect(() => {
-     
-         setBlur(username === '')
-     
-  }, [username]) 
+  const { username } = useContext(UserContext); 
+  const [newMessage, setNewMessage] = useState("");
+  const [messages, setMessages] = useState([]);
 
+  useEffect(() => {
+    const messagesRef = ref(database, "messages");
+
+    onValue(messagesRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        const loadedMessages = Object.keys(data).map((key) => ({
+          id: key,
+          ...data[key],
+        }));
+        setMessages(loadedMessages);
+      }
+    });
+
+  }, []);
 
   const handleSendMessage = () => {
     if (!newMessage.trim()) return;
-    if (!username) {
-      alert('Debes iniciar sesión para enviar mensajes.');
-      return;
-    }
 
-    const message = { text: newMessage, username, timestamp: Date.now() };
-    
-    setMessages((prevMessages) => {
-      const updatedMessages = [...prevMessages, message];
-      localStorage.setItem('messages', JSON.stringify(updatedMessages));
-      return updatedMessages;
-    });
+    const newMessageObj = {
+      username, 
+      text: newMessage,
+      timestamp: Date.now(),
+    };
 
-    setNewMessage('');
+    push(ref(database, "messages"), newMessageObj);
+
+    setNewMessage("");
   };
 
   return (
-    <div className={`${blur ? 'blur' : ''} chat`}>
-      <input
-        type="text"
-        value={newMessage}
-        onChange={(e) => setNewMessage(e.target.value)}
-        placeholder="Ingrese su mensaje"
-      />
-      <button onClick={handleSendMessage}>Enviar</button>
+    <div className="chat">
+      <Header />
+      <p style={{padding: '10px', textAlign: 'end', color: '#d2d2d2',}}>
+          Username: <span>{username}</span>
+      </p>
+      <div className="messages">
+        {messages.length === 0 ? (
+          <p>No hay mensajes aún.</p>
+        ) : (
+          messages.map((msg) => (
+            <p key={msg.id} className={msg.username === username ? "my-message" : "other-message"}>
+              <strong>{msg.username}: </strong>
+              {msg.text}
+            </p>
+          ))
+        )}
+      </div>
+
+      <div className="writer">
+        <input
+          type="text"
+          value={newMessage}
+          onChange={(e) => setNewMessage(e.target.value)}
+          placeholder="Escribe un mensaje..."
+        />
+        <button onClick={handleSendMessage}>Enviar</button>
+      </div>
     </div>
   );
 };

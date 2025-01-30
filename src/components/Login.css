@@ -1,12 +1,19 @@
+.login-container {
+    background-color: #228800;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .login {
-    position: absolute;
     border: 2px solid white;
     background-color: #228800;
     border-radius: 15px;
     padding: 20px;
-    top: 35%;
-    width: 80%;
-    left: 5%;
+    width: 90%;
+    max-width: 400px;
     color: white;
     display: flex;
     justify-content: center;
@@ -16,26 +23,44 @@
 }
 
 .login > input {
+    width: 100%; 
     border: 2px white solid;
-    padding: 5px;
+    padding: 10px;
     border-radius: 10px;
     font-size: 1.2rem;
 }
+
 .login > input:focus {
     outline: 2px solid #00ff75;
 }
+
 .login > h2 {
     color: white;
 }
 
 .login > button {
+    width: 100%; 
     background-color: #228800;
     border-radius: 10px;
     border: none;
     border-bottom: 4px solid white;
     color: white;
-    padding: 5px 10px;
+    padding: 10px;
     font-size: 1.3rem;
     font-weight: bold;
-    
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .login {
+        width: 50%;
+        max-width: 500px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .login {
+        width: 40%;
+        max-width: 450px;
+    }
 }

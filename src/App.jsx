@@ -1,30 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import Chat from "./components/Chat";
 import Login from "./components/Login";
 import Header from "./components/Header";
-import Messages from './components/Messages'
+import { UserProvider, UserContext } from "./store/userContext"; // Asegúrate de la ruta correcta
 import "./App.css";
-import { useContext, useEffect, useState } from 'react'
-import { UserProvider } from "./store/userContext";
-import { ChatProvider } from './store/chatContext'
-import { UserContext } from './store/userContext'
 
 function App() {
-    
-    
-    
-    return (
-        <UserProvider>
-            <ChatProvider>
-                <div className="container">
-                <Header />
-                <div><Login /></div>
-                <Messages />
-                <Chat />
-            </div>
-            </ChatProvider>
-        </UserProvider>
-    );
+  return (
+    <UserProvider>
+      <MainApp />
+    </UserProvider>
+  );
 }
+
+const MainApp = () => {
+  const { username } = useContext(UserContext);
+
+  return (
+    <div className="container">
+      {username === "" ? <Login /> : <Chat />}
+    </div>
+  );
+};
 
 export default App;

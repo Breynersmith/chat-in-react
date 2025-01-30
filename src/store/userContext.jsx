@@ -1,12 +1,15 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect } from "react";
 
+// Crear el contexto
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [username, setUsername] = useState(localStorage.getItem('username') || '');
+  const [username, setUsername] = useState(() => {
+    return localStorage.getItem("username") || "";
+  });
 
   useEffect(() => {
-    localStorage.setItem('username', username);
+    localStorage.setItem("username", username);
   }, [username]);
 
   return (
