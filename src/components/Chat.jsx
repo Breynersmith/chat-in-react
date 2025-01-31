@@ -51,10 +51,14 @@ const Chat = () => {
           <p>No hay mensajes aún.</p>
         ) : (
           messages.map((msg) => (
-            <p key={msg.id} className={msg.username === username ? "my-message" : "other-message"}>
+            <p key={msg.id} >
               
-              {msg.text}
-              <strong>{msg.username} </strong>
+              <span className={msg.username === username ? "my-message" : "other-message"}>
+                  {msg.text}
+              </span>
+              <strong>
+                  {msg.username}
+                  </strong>
             </p>
           ))
         )}

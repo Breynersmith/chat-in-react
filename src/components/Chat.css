@@ -13,7 +13,8 @@
 
 .messages {
     padding: 10px;
-    height: 70%;
+    height: 40vh;
+    max-height: 50vh;
     background-color: white;
     border-radius: 15px;
     margin-bottom: 20px;
@@ -24,15 +25,33 @@
     flex-direction: column;
     gap: 2px;
     padding: 10px;
-    border: 2px solid #228800;
     margin-bottom: 10px;
-    border-radius: 10px;
 }
+
+
 
 .messages strong {
     font-size: .7rem;
     text-align: end;
     color: #228800;
+}
+
+.messages .my-message {
+   background-color: #007700; 
+   text-align: end;
+   width: 80%;
+   margin-left: 10%;
+   padding: 10px;
+   border-radius: 10px 30px 10px 30px;
+   color: white;
+}
+
+.messages .other-message {
+   background-color: #d2f2d2; 
+   text-align: start;
+   width: 80%;
+   padding: 10px;
+   border-radius: 30px 10px 30px 10px; 
 }
 
 .writer {
