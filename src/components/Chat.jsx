@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { ref, onValue, push } from "firebase/database";
 import { database } from "../../firebase";
 import { UserContext } from "../store/userContext";
@@ -9,6 +9,7 @@ const Chat = () => {
   const { username } = useContext(UserContext); 
   const [newMessage, setNewMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const messagesEndRef = useRef(null);
 
   useEffect(() => {
     const messagesRef = ref(database, "messages");
@@ -23,8 +24,11 @@ const Chat = () => {
         setMessages(loadedMessages);
       }
     });
-
   }, []);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   const handleSendMessage = () => {
     if (!newMessage.trim()) return;
@@ -36,32 +40,29 @@ const Chat = () => {
     };
 
     push(ref(database, "messages"), newMessageObj);
-
     setNewMessage("");
   };
 
   return (
     <div className="chat">
       <Header />
-      <p style={{padding: '10px', textAlign: 'end', color: '#d2d2d2',}}>
-          Username: <span>{username}</span>
+      <p style={{ padding: "10px", textAlign: "end", color: "#d2d2d2" }}>
+        Username: <span>{username}</span>
       </p>
       <div className="messages">
         {messages.length === 0 ? (
           <p>No hay mensajes aún.</p>
         ) : (
           messages.map((msg) => (
-            <p key={msg.id} >
-              
+            <p key={msg.id}>
               <span className={msg.username === username ? "my-message" : "other-message"}>
-                  {msg.text}
+                {msg.text}
               </span>
-              <strong>
-                  {msg.username}
-                  </strong>
+              <strong>{msg.username}</strong>
             </p>
           ))
         )}
+        <div ref={messagesEndRef} />
       </div>
 
       <div className="writer">
