@@ -15,10 +15,10 @@ const Login = () => {
       return;
     }
 
-    // Guardamos el username en Firebase
+
     push(ref(database, 'users'), { username: tempUsername });
 
-    // Guardamos en el contexto global y localStorage
+    
     setUsername(tempUsername);
   };
 
