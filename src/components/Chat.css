@@ -2,7 +2,6 @@
     background-color: #228800;
     height: 90vh;
     width: 100%;
-    max-width: 800px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -73,8 +72,7 @@
     border-radius: 5px;
     width: 100%;
     max-width: 80%;
-    padding: 10px;
-    height: 30px;
+    height: 40px;
     font-size: 1rem;
 }
 
@@ -89,30 +87,42 @@
     border: none;
     color: #228800;
     font-weight: bold;
-    height: 30px;
+    height: 40px;
     font-size: 1rem;
     cursor: pointer;
     min-width: 80px;
 }
 
-
-@media (min-width: 600px) {
+@media (max-width: 390px) {
     .chat {
-        width: 60%;
-        margin: 0 auto;
-        height: 70vh;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        
+    }
+
+    .messages {
+        width: 80%;
+        margin: 0;
+        height: 80%;
+        padding: 0;
+    }
+
+    .writer {
+        width: 80%;
+        padding-top: 20px;
+        margin: 0;
+        justify-content: space-between;
     }
 
     .writer > input {
-        width: 80%;
-        font-size: 1.1rem;
-    }
-
-    .writer > button {
-        height: 45px;
-        font-size: 1.1rem;
+        width: 100%;
     }
 }
+
 
 @media (min-width: 400px) {
     .chat {
@@ -120,23 +130,55 @@
         margin: 0 auto;
         height: 80vh;
     }
+    .writer {
+        width: 100%;
+        padding: 0;
+    }
 
     .writer > input {
         width: 80%;
+        height: 40px;
         font-size: 1.1rem;
     }
 
     .writer > button {
-        height: 45px;
+        height: 40px;
         font-size: 1.1rem;
     }
 }
 
+@media (min-width: 600px) {
+    .chat {
+        width: 60%;
+        margin: 0 auto;
+        height: 70vh;
+    }
+    .writer {
+        width: 100%;
+        padding: 0;
+        padding-top: 20px;
+    }
+
+    .writer > input {
+        width: 80%;
+        height: 50px;
+        font-size: 1.1rem;
+    }
+
+    .writer > button {
+        padding: 0;
+        height: 50px;
+        font-size: 1.1rem;
+    }
+}
 
 @media (min-width: 1024px) {
     .chat {
         width: 50%;
         min-height: 70vh;
+    }
+    .messages {
+        padding: 0;
     }
 
     .writer > input {
@@ -144,7 +186,6 @@
     }
 
     .writer > button {
-        height: 45px;
         font-size: 1.2rem;
     }
 }
