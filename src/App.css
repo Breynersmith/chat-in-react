@@ -1,13 +1,13 @@
 .container {
-    background-color: #228800;
+    background-color: #e2e2e2;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     gap: 10px ;
-    padding-top: 20px;
-    height: 80vh;
+    height: 100vh;
     width: 100vw;
+    overflow: hidden;
     
 }
 

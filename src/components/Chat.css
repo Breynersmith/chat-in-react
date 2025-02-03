@@ -9,6 +9,12 @@
     padding: 20px 5px;
     border-radius: 15px;
     margin: 0 auto;
+    border-right: 3px solid white;
+    border-left: 3px solid white;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
 }
 
 .messages {
@@ -68,7 +74,7 @@
     width: 100%;
     max-width: 80%;
     padding: 10px;
-    height: 40px;
+    height: 30px;
     font-size: 1rem;
 }
 
@@ -83,7 +89,7 @@
     border: none;
     color: #228800;
     font-weight: bold;
-    height: 40px;
+    height: 30px;
     font-size: 1rem;
     cursor: pointer;
     min-width: 80px;
@@ -112,7 +118,7 @@
 @media (min-width: 1024px) {
     .chat {
         width: 50%;
-        min-height: 90vh;
+        min-height: 70vh;
     }
 
     .writer > input {
