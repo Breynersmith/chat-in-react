@@ -96,11 +96,29 @@
 }
 
 
-@media (min-width: 768px) {
+@media (min-width: 600px) {
     .chat {
         width: 60%;
         margin: 0 auto;
         height: 70vh;
+    }
+
+    .writer > input {
+        width: 80%;
+        font-size: 1.1rem;
+    }
+
+    .writer > button {
+        height: 45px;
+        font-size: 1.1rem;
+    }
+}
+
+@media (min-width: 400px) {
+    .chat {
+        width: 80%;
+        margin: 0 auto;
+        height: 80vh;
     }
 
     .writer > input {
@@ -132,25 +150,4 @@
 }
 
 
-@media (max-width: 600px) {
-    .chat {
-        width: 80%;
-        height: 90vh;
-        padding: 10px;
-    }
 
-    .writer > input {
-        width: 90%;
-        height: 35px;
-        
-    }
-    
-    .writer > input:focus {
-        outline: none;
-    }
-
-    .writer > button {
-        width: 25%;
-        height: 55px;
-    }
-}
